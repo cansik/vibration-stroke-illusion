@@ -7,6 +7,9 @@ class MicroController
 
   PApplet parent;
 
+  int minPulseWidth = 0;
+  int maxPulseWidth = 1023;
+
   public MicroController(PApplet parent, String portName)
   {
     this.portName = portName;
@@ -24,9 +27,14 @@ class MicroController
     mcuPort = null;
   }
 
+  public void writeStrength(int port, float strength)
+  {
+    writePulse(port, round(map(strength, 0, 1, minPulseWidth, maxPulseWidth)));
+  }
+
   public void writePulse(int port, int pulseWidth)
   {
-    write("p:" + nf(port, 2) + ":" + nf(pulseWidth, 3));
+    write("p:" + nf(port, 2) + ":" + nf(pulseWidth, 4));
   }
 
   public void write(String command)

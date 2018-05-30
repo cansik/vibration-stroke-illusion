@@ -13,6 +13,11 @@ class VibrationDevice
     this.y = y;
   }
 
+  public void write(float strength)
+  {
+    mcu.writeStrength(pin, strength);
+  }
+
   public void update()
   {
   }
@@ -24,7 +29,14 @@ class VibrationDevice
     pg.noFill();
     pg.stroke(55);
     pg.strokeWeight(3);
+    pg.ellipseMode(CENTER);
     pg.ellipse(0, 0, 50, 50);
+
+    pg.fill(55);
+    pg.textAlign(CENTER, CENTER);
+    pg.textSize(20);
+    pg.text(nf(pin, 2), 0, 0);
+
     pg.popMatrix();
   }
 }

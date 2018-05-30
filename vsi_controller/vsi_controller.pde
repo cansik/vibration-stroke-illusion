@@ -7,12 +7,16 @@ VibrationDevice[] devices = new VibrationDevice[] {
   new VibrationDevice(mcu, 0, 100, 100)
 };
 
+PFont font;
+
 PGraphics canvas;
 
 void setup()
 {
-  //size(1024, 768, FX2D);
-  fullScreen(FX2D);
+  size(1024, 768, FX2D);
+  //fullScreen(FX2D);
+
+  font = createFont("Helvetica", 32);
 
   canvas = createGraphics((int)(width * 0.8), (int)(height * 0.7));
   canvas.pixelDensity = 2;
@@ -27,6 +31,7 @@ void draw()
 
   canvas.beginDraw();
   canvas.background(200);
+  canvas.textFont(font);
 
   // update and render devices
   for (VibrationDevice device : devices)
