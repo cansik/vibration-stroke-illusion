@@ -16,9 +16,17 @@ class MicroController
     this.parent = parent;
   }
 
-  public void attach()
+  public boolean attach()
   {
-    mcuPort = new Serial(parent, portName, 115200);
+    try
+    {
+      mcuPort = new Serial(parent, portName, 115200);
+      return true;
+    }
+    catch(Exception ex)
+    {
+      return false;
+    }
   }
 
   public void detach()
@@ -45,6 +53,9 @@ class MicroController
 
   public boolean isAttached()
   {
+    if (mcuPort == null)
+      return false;
+
     return mcuPort.active();
   }
 }
