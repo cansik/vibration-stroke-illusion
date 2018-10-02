@@ -42,7 +42,7 @@ class MicroController
 
   public void writePulse(int port, int pulseWidth)
   {
-    write("p:" + nf(port, 2) + ":" + nf(pulseWidth, 4));
+    write("v:" + nf(port, 2) + ":" + nf(pulseWidth, 4));
   }
 
   public void write(String command)
